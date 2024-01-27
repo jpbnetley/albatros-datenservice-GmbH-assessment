@@ -1,0 +1,9 @@
+.display {
+  height: 3rem;
+  border-radius: 1rem;
+  border: 0.15rem #646cff solid;
+  color: black;
+  font-size: x-large;
+  padding: 0.7rem;
+  text-align: right;
+}

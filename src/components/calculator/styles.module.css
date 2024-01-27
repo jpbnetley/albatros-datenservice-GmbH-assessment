@@ -1,0 +1,12 @@
+.container {
+  border: solid rgb(45, 42, 42) 2rem;
+  border-radius: 2rem;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 25rem;
+  min-height: 40rem;
+  padding: 1rem;
+}
