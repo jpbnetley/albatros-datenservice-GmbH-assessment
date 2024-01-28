@@ -3,12 +3,12 @@ import stringIsOperator from "../string-is-operator"
 
 export type MathNumberAccumulatorType = { results: string[], placeHolder?: string }
 
-    /**
-     * Takes the input and splits the numbers and math operators
-     * in arrays. @example ['123','+', '12']
-     * @param value that should be split
-     * @returns split math and numbers
-     */
+/**
+ * Takes the input and splits the numbers and math operators
+ * in arrays. @example ['123','+', '12']
+ * @param value that should be split
+ * @returns split math and numbers
+ */
 const splitByMathOperation = (value: string) => {
   const letters =  [...value]
   const lettersMaxIndex = letters.length -1

@@ -3,7 +3,7 @@
  * @param execute function that should get executed
  * @returns 
  */
-const handleError = <A>(execute: () => A) => 
+const handleError = <Response>(execute: () => Response) => 
   () => {
     try {
       return execute()

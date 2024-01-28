@@ -6,8 +6,6 @@ export type MathOperatorType = {
   variant?: MathOperations.equals | 'history'
 }
 
-
-
 const MathOperator = ({ value, variant }: MathOperatorType) => {
   const calculatedStyles = `
     ${styles.operator} 

@@ -30,8 +30,6 @@ const Keypad = ({
   onBackspaceButtonClick
  }: KeypadType) => {
 
-    // TODO: update buttons to use svg for history and backspace
-
   return (
     <div className={styles.container}>
       <Button variant='secondary' onClick={onHistoryButtonClick}><img src='/calculator/history_icon.svg' /></Button>

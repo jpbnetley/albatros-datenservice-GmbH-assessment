@@ -5,7 +5,7 @@ export type KeyPadButtonRowType = ButtonType & {
   startValue: number,
 }
 
-const KeyPadButtonRow = ({length, startValue, ...rest}: KeyPadButtonRowType) => {
+const KeyPadButtonRow = ({ length, startValue, ...rest }: KeyPadButtonRowType) => {
   const numberButtons = Array.from({ length })
   .map((_, index) => (
     <Button {...rest} key={index}>
