@@ -3,6 +3,7 @@ import Button from "../button"
 import styles from './styles.module.css'
 import CalculatorActions from '../../types/enums/calculator-actions'
 import MathOperations from '../../types/enums/math-operations'
+import KeyPadButtonRow from '../keypad-button-row'
 
 export type KeypadType = {
   onNumberButtonClick?: MouseEventHandler<HTMLButtonElement>
@@ -28,15 +29,8 @@ const Keypad = ({
   onSubtractButtonClick,
   onBackspaceButtonClick
  }: KeypadType) => {
-  const numberButtons = Array.from({ length: 10 })
-    .map((_, index) => (
-      <Button onClick={onButtonClick} key={index}>
-        {index}
-      </Button>
-    ))
 
     // TODO: update buttons to use svg for history and backspace
-    // TODO: fix button positions to match design
 
   return (
     <div className={styles.container}>
@@ -45,11 +39,23 @@ const Keypad = ({
       <Button variant='secondary' onClick={onMultiplyButtonClick}>{MathOperations.multiply}</Button>
       <Button variant='secondary' onClick={onDivisionButtonClick}>{MathOperations.division}</Button>
 
-      <Button variant='secondary' onClick={onAddButtonClick} style={{ gridRowStart: 2, gridColumn: 4 }} >{MathOperations.add}</Button>
-      <Button variant='secondary' onClick={onSubtractButtonClick} style={{ gridRowStart: 3, gridColumn: 4 }}>{MathOperations.subtract}</Button>
-      <Button variant='primary' onClick={onEqualButtonClick}  style={{ gridRowStart: 4, gridRowEnd: 6, gridColumn: 4 }}>{MathOperations.equals}</Button>
+      <Button variant='secondary' onClick={onAddButtonClick} style={{ gridRowStart: 2, gridColumn: 4 }}>
+        {MathOperations.add}
+      </Button>
+      <Button variant='secondary' onClick={onSubtractButtonClick} style={{ gridRowStart: 3, gridColumn: 4 }}>
+        {MathOperations.subtract}
+      </Button>
+      <Button variant='primary' onClick={onEqualButtonClick}  style={{ gridRowStart: 4, gridRowEnd: 6, gridColumn: 4 }}>
+        {MathOperations.equals}
+      </Button>
 
-        {numberButtons}
+      <KeyPadButtonRow length={3} startValue={7} onClick={onButtonClick} />
+      <KeyPadButtonRow length={3} startValue={4} onClick={onButtonClick} />
+      <KeyPadButtonRow length={3} startValue={1} onClick={onButtonClick} />
+
+      <Button onClick={onButtonClick}>
+        0
+      </Button>
 
       <Button onClick={onBackspaceButtonClick} style={{ gridRowStart: 5, gridColumn: 1 }}>
         <img src='/calculator/back-space.svg' />
