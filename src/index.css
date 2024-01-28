@@ -43,3 +43,7 @@ button:hover {
   border-color: #646cff;
 }
 
+#root {
+  margin-inline: auto;
+}
+
