@@ -12,7 +12,7 @@ export type MathReducer = {
 /**
  * calculates the math based on the string provided
  * caution: this function can throw errors, so should be handled consuming side.
- * @param mathText 
+ * @param mathText @example 1+1
  * @returns the math answer
  */
 const calculateMath = (mathText: string) => {
