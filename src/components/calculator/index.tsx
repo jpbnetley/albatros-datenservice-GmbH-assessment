@@ -4,6 +4,8 @@ import Display from "../display"
 import Keypad from "../keypad"
 import styles from './styles.module.css'
 import MathOperations from "../../types/enums/math-operations"
+import stringIsOperator from "../../utils/string-is-operator"
+import calculateMath from "../../utils/math/calculate-math"
 
 const Calculator = () => {
   const [history, setHistory] = useState<string[]>([])
@@ -24,11 +26,13 @@ const Calculator = () => {
   }
 
   const handleEqualButtonClick = () => {   
-    const textAnswer: string | undefined = displayText.split(MathOperations.equals)[1]
-    if (textAnswer) return
+    const hasDisplayText = !!displayText.length
+    const answerHasEquals = !!displayText.split(MathOperations.equals)[1]
+    const endsWithOperator = stringIsOperator(displayText[displayText.length -1])
+
+    if (answerHasEquals || !hasDisplayText || endsWithOperator) return
     
-    //TODO: calculate answer based on user input
-    const answer = 0
+    const answer = calculateMath(displayText)
     const newDisplayText = `${displayText}=${answer}`
     setDisplayText(newDisplayText)
   }

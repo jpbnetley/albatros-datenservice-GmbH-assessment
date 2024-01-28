@@ -37,9 +37,10 @@ const Keypad = ({
 
     // TODO: update buttons to use svg for history and backspace
     // TODO: fix button positions to match design
+
   return (
     <div className={styles.container}>
-      <Button variant='secondary' onClick={onHistoryButtonClick}>{CalculatorActions.history}</Button>
+      <Button variant='secondary' onClick={onHistoryButtonClick}><img src='/calculator/history_icon.svg' /></Button>
       <Button variant='secondary' onClick={onClearButtonClick}>{CalculatorActions.clearAll}</Button>
       <Button variant='secondary' onClick={onMultiplyButtonClick}>{MathOperations.multiply}</Button>
       <Button variant='secondary' onClick={onDivisionButtonClick}>{MathOperations.division}</Button>
@@ -50,7 +51,7 @@ const Keypad = ({
       <Button variant='primary' onClick={onEqualButtonClick}>{MathOperations.equals}</Button>
         {numberButtons}
       <Button onClick={onBackspaceButtonClick}>
-        {CalculatorActions.backspace}
+        <img src='/calculator/back-space.svg' />
       </Button>
       <Button onClick={onButtonClick}>
         {CalculatorActions.dot}
