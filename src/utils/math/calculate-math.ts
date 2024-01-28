@@ -9,6 +9,12 @@ export type MathReducer = {
   operator?: MathOperations
 }
 
+/**
+ * calculates the math based on the string provided
+ * caution: this function can throw errors, so should be handled consuming side.
+ * @param mathText 
+ * @returns the math answer
+ */
 const calculateMath = (mathText: string) => {
   const mathItems = splitByMathOperation(mathText)
 
@@ -37,7 +43,6 @@ const calculateMath = (mathText: string) => {
     const answer = mathOperatorExecution(total ?? 0, parsedNumber)
     
     return { total: answer }
-    
   }, {})
 
   return total

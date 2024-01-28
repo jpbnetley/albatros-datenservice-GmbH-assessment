@@ -3,17 +3,12 @@ import stringIsOperator from "../string-is-operator"
 
 export type MathNumberAccumulatorType = { results: string[], placeHolder?: string }
 
-/**
- * 
- *   console.log({
-      test1: splitByMathOperation('1*11/7+12-10=100'),
-      test2: splitByMathOperation('1*11'),
-      test3: splitByMathOperation('1+11'),
-      test4: splitByMathOperation('1+')
-    })
- * 
- */
-
+    /**
+     * Takes the input and splits the numbers and math operators
+     * in arrays. @example ['123','+', '12']
+     * @param value that should be split
+     * @returns split math and numbers
+     */
 const splitByMathOperation = (value: string) => {
   const letters =  [...value]
   const lettersMaxIndex = letters.length -1

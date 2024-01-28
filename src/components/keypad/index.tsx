@@ -44,19 +44,19 @@ const Keypad = ({
       <Button variant='secondary' onClick={onClearButtonClick}>{CalculatorActions.clearAll}</Button>
       <Button variant='secondary' onClick={onMultiplyButtonClick}>{MathOperations.multiply}</Button>
       <Button variant='secondary' onClick={onDivisionButtonClick}>{MathOperations.division}</Button>
-      
 
-      <Button variant='secondary' onClick={onAddButtonClick}>{MathOperations.add}</Button>
-      <Button variant='secondary' onClick={onSubtractButtonClick}>{MathOperations.subtract}</Button>
-      <Button variant='primary' onClick={onEqualButtonClick}>{MathOperations.equals}</Button>
+      <Button variant='secondary' onClick={onAddButtonClick} style={{ gridRowStart: 2, gridColumn: 4 }} >{MathOperations.add}</Button>
+      <Button variant='secondary' onClick={onSubtractButtonClick} style={{ gridRowStart: 3, gridColumn: 4 }}>{MathOperations.subtract}</Button>
+      <Button variant='primary' onClick={onEqualButtonClick}  style={{ gridRowStart: 4, gridRowEnd: 6, gridColumn: 4 }}>{MathOperations.equals}</Button>
+
         {numberButtons}
-      <Button onClick={onBackspaceButtonClick}>
+
+      <Button onClick={onBackspaceButtonClick} style={{ gridRowStart: 5, gridColumn: 1 }}>
         <img src='/calculator/back-space.svg' />
       </Button>
       <Button onClick={onButtonClick}>
         {CalculatorActions.dot}
       </Button>
-      
     </div>
   )
 }

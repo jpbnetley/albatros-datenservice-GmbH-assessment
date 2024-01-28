@@ -6,6 +6,7 @@ import styles from './styles.module.css'
 import MathOperations from "../../types/enums/math-operations"
 import stringIsOperator from "../../utils/string-is-operator"
 import calculateMath from "../../utils/math/calculate-math"
+import handleError from "../../utils/error-handlers/handle-error"
 
 const Calculator = () => {
   const [history, setHistory] = useState<string[]>([])
@@ -14,6 +15,7 @@ const Calculator = () => {
 
   const handleButtonClick: MouseEventHandler<HTMLButtonElement> = event => {
     const textContent = event.currentTarget.textContent ?? ''
+    // TODO: 6. When an operation key is pressed to start a new calculation the result of the previous calculation is used as the first number of the new calculation.
     
 
     if (displayText.includes(MathOperations.equals)){
@@ -25,17 +27,18 @@ const Calculator = () => {
     setDisplayText(text => `${text}${textContent}`)
   }
 
-  const handleEqualButtonClick = () => {   
-    const hasDisplayText = !!displayText.length
-    const answerHasEquals = !!displayText.split(MathOperations.equals)[1]
-    const endsWithOperator = stringIsOperator(displayText[displayText.length -1])
+  const handleEqualButtonClick = handleError(
+    () => {   
+      const hasDisplayText = !!displayText.length
+      const answerHasEquals = !!displayText.split(MathOperations.equals)[1]
+      const endsWithOperator = stringIsOperator(displayText[displayText.length -1])
 
-    if (answerHasEquals || !hasDisplayText || endsWithOperator) return
-    
-    const answer = calculateMath(displayText)
-    const newDisplayText = `${displayText}=${answer}`
-    setDisplayText(newDisplayText)
-  }
+      if (answerHasEquals || !hasDisplayText || endsWithOperator) return
+      
+      const answer = calculateMath(displayText)
+      const newDisplayText = `${displayText}=${answer}`
+      setDisplayText(newDisplayText)
+  })
 
   const handleBackspaceButtonClick = () => {
     setDisplayText(text => text.slice(0, text.length -1))
