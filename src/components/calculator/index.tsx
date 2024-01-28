@@ -16,18 +16,21 @@ const Calculator = () => {
 
   const handleButtonClick: MouseEventHandler<HTMLButtonElement> = event => {
     const textContent = event.currentTarget.textContent ?? ''
+
+    if (displayText.includes(MathOperations.equals) && !stringIsOperator(textContent)) return setDisplayText(textContent)
+
     setDisplayText(text => `${text}${textContent}`)
   }
 
   const handleMathOperatorButtonClick: MouseEventHandler<HTMLButtonElement> = event => {
-    if (history.length && lastAnswer) setDisplayText(lastAnswer.toString())
+    if (lastAnswer && displayText.includes(MathOperations.equals)) setDisplayText(lastAnswer.toString())
     handleButtonClick(event)
   }
 
   const handleEqualButtonClick = handleError(
     () => {   
       const hasDisplayText = !!displayText.length
-      const answerHasEquals = !!displayText.split(MathOperations.equals)[1]
+      const answerHasEquals = displayText.includes(MathOperations.equals)
       const endsWithOperator = stringIsOperator(displayText[displayText.length -1])
 
       if (answerHasEquals || !hasDisplayText || endsWithOperator) return
@@ -48,15 +51,13 @@ const Calculator = () => {
     setDisplayText('')
   }
 
-  const handleShowCalculationHistory = () => setShowCalculationHistory(history => !history)
+  const handleToggleShowCalculationHistory = () => setShowCalculationHistory(showHistory => !showHistory)
 
-  const handleHistoryBackButtonClicked = () => setShowCalculationHistory(shouldShow => !shouldShow)
-  
   return (
     <div className={styles.container}>
       <ActionsHistory 
        history={history}
-       onBackClick={handleHistoryBackButtonClicked} 
+       onBackClick={handleToggleShowCalculationHistory} 
        showCalculationHistory={showCalculationHistory} 
       />
       {!showCalculationHistory && (
@@ -71,7 +72,7 @@ const Calculator = () => {
             onClearButtonClick={handleAllClearButtonCLick}
             onEqualButtonClick={handleEqualButtonClick}
             onBackspaceButtonClick={handleBackspaceButtonClick}
-            onHistoryButtonClick={handleShowCalculationHistory}
+            onHistoryButtonClick={handleToggleShowCalculationHistory}
             />
         </>
       )}
