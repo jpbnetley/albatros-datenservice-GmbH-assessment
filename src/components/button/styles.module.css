@@ -1,0 +1,21 @@
+.button {
+  font-size: 20px;
+}
+
+.default {
+  background-color: white;
+  color: rgb(77, 51, 168);
+}
+
+.primary {
+  background-color: rgb(119, 59, 231);
+}
+
+.primary:hover {
+  border-color: rgb(169, 99, 245);
+  border-color: rgb(216, 10, 10);
+}
+
+.secondary {
+  background-color: rgb(186, 150, 245);
+}
