@@ -15,13 +15,13 @@ const MathRow = ({ text, variant }: MathRowType) => {
     <label>
      {mathItems.map((item, index) => {
       if (stringIsOperator(item) && item === MathOperations.equals) {
-        return <MathOperator value={item} variant={MathOperations.equals} />
+        return <MathOperator value={item} variant={MathOperations.equals} key={index} />
       }
       
-      if (stringIsOperator(item)) return <MathOperator value={item} variant={variant} />
+      if (stringIsOperator(item)) return <MathOperator value={item} variant={variant} key={index} />
 
       if (mathItems.length -1 === index && mathItems[mathItems.length -2] === MathOperations.equals) {
-        return <MathAnswer value={item} />
+        return <MathAnswer value={item} key={index} />
       }
 
       return item

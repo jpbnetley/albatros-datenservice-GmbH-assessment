@@ -11,20 +11,17 @@ import handleError from "../../utils/error-handlers/handle-error"
 const Calculator = () => {
   const [history, setHistory] = useState<string[]>([])
   const [displayText, setDisplayText] = useState<string>('')
+  const [lastAnswer, setLastAnswer] = useState<number | undefined>()
   const [showCalculationHistory, setShowCalculationHistory] = useState<boolean>(false)
 
   const handleButtonClick: MouseEventHandler<HTMLButtonElement> = event => {
     const textContent = event.currentTarget.textContent ?? ''
-    // TODO: 6. When an operation key is pressed to start a new calculation the result of the previous calculation is used as the first number of the new calculation.
-    
-
-    if (displayText.includes(MathOperations.equals)){
-      setHistory(previousHistory => [...previousHistory, displayText])
-      setDisplayText(textContent)
-      return
-    }
-
     setDisplayText(text => `${text}${textContent}`)
+  }
+
+  const handleMathOperatorButtonClick: MouseEventHandler<HTMLButtonElement> = event => {
+    if (history.length && lastAnswer) setDisplayText(lastAnswer.toString())
+    handleButtonClick(event)
   }
 
   const handleEqualButtonClick = handleError(
@@ -36,8 +33,11 @@ const Calculator = () => {
       if (answerHasEquals || !hasDisplayText || endsWithOperator) return
       
       const answer = calculateMath(displayText)
+      setLastAnswer(answer)
       const newDisplayText = `${displayText}=${answer}`
       setDisplayText(newDisplayText)
+
+      setHistory(previousHistory => [...previousHistory, newDisplayText])
   })
 
   const handleBackspaceButtonClick = () => {
@@ -64,10 +64,10 @@ const Calculator = () => {
           <Display value={displayText} />
           <Keypad 
             onNumberButtonClick={handleButtonClick} 
-            onAddButtonClick={handleButtonClick}
-            onSubtractButtonClick={handleButtonClick}
-            onMultiplyButtonClick={handleButtonClick}
-            onDivisionButtonClick={handleButtonClick}
+            onAddButtonClick={handleMathOperatorButtonClick}
+            onSubtractButtonClick={handleMathOperatorButtonClick}
+            onMultiplyButtonClick={handleMathOperatorButtonClick}
+            onDivisionButtonClick={handleMathOperatorButtonClick}
             onClearButtonClick={handleAllClearButtonCLick}
             onEqualButtonClick={handleEqualButtonClick}
             onBackspaceButtonClick={handleBackspaceButtonClick}

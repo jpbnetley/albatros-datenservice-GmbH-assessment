@@ -14,8 +14,6 @@ const MathOperator = ({ value, variant }: MathOperatorType) => {
     ${variant === MathOperations.equals ? styles.equals : ''}
     ${variant === 'history' ? styles.history : ''}
     `
-
-    console.log({variant})
   
   return (
   <span className={calculatedStyles}>
