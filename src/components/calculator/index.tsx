@@ -50,13 +50,13 @@ const Calculator = () => {
 
   const handleShowCalculationHistory = () => setShowCalculationHistory(history => !history)
 
-  const handleShowCalculatorHistory = () => setShowCalculationHistory(shouldShow => !shouldShow)
+  const handleHistoryBackButtonClicked = () => setShowCalculationHistory(shouldShow => !shouldShow)
   
   return (
     <div className={styles.container}>
       <ActionsHistory 
        history={history}
-       onShowActionHistoryClick={handleShowCalculatorHistory} 
+       onBackClick={handleHistoryBackButtonClicked} 
        showCalculationHistory={showCalculationHistory} 
       />
       {!showCalculationHistory && (

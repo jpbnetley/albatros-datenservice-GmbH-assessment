@@ -1,4 +1,13 @@
 .operator {
   color:  rgb(77, 51, 168);
   padding-inline: 0.5rem;
+  font-weight: 800;
+}
+
+.equals {
+  color: inherit;
+}
+
+.history {
+  color: rgb(168, 153, 220);
 }

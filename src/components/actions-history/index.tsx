@@ -6,13 +6,13 @@ import MathRow from '../math-row'
 export type ActionsHistoryType = {
   history: string[]
   showCalculationHistory?: boolean
-  onShowActionHistoryClick?: MouseEventHandler<HTMLButtonElement>
+  onBackClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 const ActionsHistory = ({ 
   history, 
   showCalculationHistory, 
-  onShowActionHistoryClick 
+  onBackClick: onShowActionHistoryClick 
 }: ActionsHistoryType) => {
   const shouldShowHideButton = showCalculationHistory && onShowActionHistoryClick 
 
@@ -20,7 +20,7 @@ const ActionsHistory = ({
     <div className={styles.container}>
       {shouldShowHideButton && <Button onClick={onShowActionHistoryClick}>Back</Button>}
       <div className={`${styles.content} ${shouldShowHideButton ? styles['full-screen'] : styles['default-screen']}`}>
-        {history.length > 0 && history.map((history, index) => <MathRow key={index} text={history} />)}
+        {history.length > 0 && history.map((history, index) => <MathRow key={index} text={history} variant='history'/>)}
       </div>
     </div>
   )
