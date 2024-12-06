@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, ReactNode } from "react"
+import React, { DetailedHTMLProps, ReactNode } from "react"
 import styles from './styles.module.css'
 
 export type ButtonType = DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
