@@ -14,7 +14,7 @@ const ActionsHistory = ({
   showCalculationHistory, 
   onBackClick: onShowActionHistoryClick 
 }: ActionsHistoryType) => {
-  const shouldShowHideButton = showCalculationHistory && onShowActionHistoryClick 
+      const shouldShowHideButton = showCalculationHistory && onShowActionHistoryClick 
 
     return (
     <div className={styles.container}>
