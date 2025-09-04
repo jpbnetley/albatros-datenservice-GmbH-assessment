@@ -5,6 +5,7 @@ import tsParser from '@typescript-eslint/parser'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import eslint from '@eslint/js'
+import { defineConfig } from 'eslint/config';
 import { FlatCompat } from '@eslint/eslintrc'
 import tseslint from 'typescript-eslint';
 
@@ -16,7 +17,7 @@ const compat = new FlatCompat({
   allConfig: eslint.configs.all,
 })
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: ['dist/*', '.eslintrc.config.mjs'],
   },
