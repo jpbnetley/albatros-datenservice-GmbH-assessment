@@ -1,21 +1,10 @@
-import { fixupConfigRules } from '@eslint/compat'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
 import tsParser from '@typescript-eslint/parser'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import eslint from '@eslint/js'
 import { defineConfig } from 'eslint/config';
-import { FlatCompat } from '@eslint/eslintrc'
-import tseslint from 'typescript-eslint';
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslint.configs.recommended,
-  allConfig: eslint.configs.all,
-})
+import typescriptEslint from 'typescript-eslint';
+import reactPluginHooks from 'eslint-plugin-react-hooks'
 
 export default defineConfig(
   {
@@ -25,14 +14,11 @@ export default defineConfig(
     files: ['src/**/*.{ts,tsx}'],
   },
   eslint.configs.recommended,
-  tseslint.configs.recommended,
-  ...fixupConfigRules(
-    compat.extends(
-      'plugin:react-hooks/recommended'
-    )),
+  typescriptEslint.configs.recommended,
   {
     plugins: {
       'react-refresh': reactRefresh,
+      'react-hooks': reactPluginHooks,
     },
 
     languageOptions: {
@@ -43,6 +29,7 @@ export default defineConfig(
     },
 
     rules: {
+      ...reactPluginHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         {
