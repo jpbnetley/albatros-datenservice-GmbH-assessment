@@ -7,7 +7,7 @@ on:
     branches: ['main']
 
 env:
-  node_version: 22
+  node_version: 24
 
 jobs:
   validate:
@@ -21,11 +21,11 @@ jobs:
         command: ['test', 'typescript:check']
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: pnpm/action-setup@v4
+    - uses: actions/checkout@v6
+    - uses: pnpm/action-setup@v5
 
     - name: Use Node.js ${{ env.node_version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ env.node_version }}
         cache: 'pnpm'
